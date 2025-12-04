@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 21:47:42 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 23:27:08 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/04 23:33:36 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	monitor(t_philo *philos, size_t count)
 	while (someone_died == 0)
 	{
 		check_starvation(philos, count, &someone_died);
-		if (check_all_full(philos, count) == 1)
+		if (philos->data->total_meals > 0 && check_all_full(philos, count) == 1)
 		{
 			write_lock(philos->stop_flag, philos->stop_lock, 1);
 			break ;

@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 14:16:16 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 22:34:41 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/04 23:37:08 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	data_setup(t_data *data, int argc, char **argv)
 		return (3);
 	if (ft_aatoi(argv[4], &data->time_to_eat) != 0)
 		return (4);
-	data->total_meals = 0;
+	data->total_meals = -1;
 	if (argc == 6)
 	{
 		if (ft_aatoi(argv[5], &data->total_meals) != 0)

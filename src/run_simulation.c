@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 21:47:42 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 23:37:33 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/04 23:38:54 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	check_all_full(t_philo *philos, size_t count)
 	i = 0;
 	while (i < count)
 	{
-		meals_eaten = read_lock(&philos->meals_eaten, &philos[i].meal_lock);
+		meals_eaten = read_lock(&philos[i].meals_eaten, &philos[i].meal_lock);
 		if (meals_eaten != limit)
 		{
 			return (0);

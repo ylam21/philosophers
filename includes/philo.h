@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 18:33:28 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 22:34:07 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/04 23:03:21 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,16 @@ typedef struct s_philo
 }					t_philo;
 
 int					input_checker(int argc, char **argv);
+void				write_status(t_philo *philo, char *s);
+int					read_lock(int *ptr, pthread_mutex_t *mutex);
+void				write_lock(int *ptr, pthread_mutex_t *mutex, int value);
 void				*routine(void *arg);
 int					allocate_threads(pthread_t **threads, size_t count);
 int					data_setup(t_data *data, int argc, char **argv);
 int					forks_setup(pthread_mutex_t **forks, size_t count);
 int					philos_setup(t_philo **philos, pthread_mutex_t *forks,
 						t_data *data);
-int					get_time(void);
-int					read_flag(int *flag, pthread_mutex_t *mutex);
-void				write_status(t_philo *philo, char *s);
+long				get_time(void);
 int					run_simulation(pthread_t *threads, t_philo *philos,
 						size_t count);
 #endif

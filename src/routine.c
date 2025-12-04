@@ -6,36 +6,11 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:03:14 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 22:26:16 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/04 23:04:48 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-int	read_flag(int *flag, pthread_mutex_t *mutex)
-{
-	int	ret;
-
-	pthread_mutex_lock(mutex);
-	ret = *flag;
-	pthread_mutex_unlock(mutex);
-	return (ret);
-}
-
-void	write_status(t_philo *philo, char *s)
-{
-	int	current_time;
-	int	timestamp;
-
-	pthread_mutex_lock(philo->write_lock);
-	if (read_flag(philo->stop_flag, philo->stop_lock) == 0)
-	{
-		current_time = get_time();
-		timestamp = current_time - philo->data->start_time;
-		printf("%zu %d %s\n", (long unsigned int)timestamp, philo->id, s);
-	}
-	pthread_mutex_unlock(philo->write_lock);
-}
 
 void	sleep_routine(t_philo *philo)
 {
@@ -76,10 +51,10 @@ void	*routine(void *arg)
 	philo->last_meal_time = get_time();
 	if (philo->id % 2 == 0)
 		usleep(1000);
-	while (read_flag(philo->stop_flag, philo->stop_lock) == 0)
+	while (read_lock(philo->stop_flag, philo->stop_lock) == 0)
 	{
 		eat_routine(philo);
-		if (read_flag(philo->stop_flag, philo->stop_lock) != 0)
+		if (read_lock(philo->stop_flag, philo->stop_lock) != 0)
 			break ;
 		sleep_routine(philo);
 		think_routine(philo);

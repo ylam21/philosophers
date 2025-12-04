@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   write_status.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/04 14:10:32 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 23:26:58 by omaly            ###   ########.fr       */
+/*   Created: 2025/12/04 22:58:47 by omaly             #+#    #+#             */
+/*   Updated: 2025/12/04 23:04:32 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "../includes/philo.h"
 
-int	ft_aatoi(const char *s, int *out);
-int	ft_isdigit(char c);
-int	is_whitespace(char c);
+void	write_status(t_philo *philo, char *s)
+{
+	long	current_time;
+	long	timestamp;
 
-#endif
+	pthread_mutex_lock(philo->write_lock);
+	if (read_lock(philo->stop_flag, philo->stop_lock) == 0)
+	{
+		current_time = get_time();
+		timestamp = current_time - philo->data->start_time;
+		printf("%zu %d %s\n", timestamp, philo->id, s);
+	}
+	pthread_mutex_unlock(philo->write_lock);
+}

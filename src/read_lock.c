@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   read_lock.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/04 14:10:32 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 23:26:58 by omaly            ###   ########.fr       */
+/*   Created: 2025/12/04 22:55:58 by omaly             #+#    #+#             */
+/*   Updated: 2025/12/04 23:01:17 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "../includes/philo.h"
 
-int	ft_aatoi(const char *s, int *out);
-int	ft_isdigit(char c);
-int	is_whitespace(char c);
+int	read_lock(int *ptr, pthread_mutex_t *mutex)
+{
+	int	read;
 
-#endif
+	pthread_mutex_lock(mutex);
+	read = *ptr;
+	pthread_mutex_unlock(mutex);
+	return (read);
+}

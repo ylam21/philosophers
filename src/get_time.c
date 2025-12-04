@@ -1,49 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_checker.c                                    :+:      :+:    :+:   */
+/*   get_time.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/03 18:33:11 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 22:00:43 by omaly            ###   ########.fr       */
+/*   Created: 2025/12/04 16:57:03 by omaly             #+#    #+#             */
+/*   Updated: 2025/12/04 21:54:26 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-bool	has_digits_only(char *s)
+int	get_time(void)
 {
-	size_t	i;
+	struct timeval	tv;
+	int				time;
 
-	if (!s)
-		return (false);
-	if (s[0] == '\0')
-		return (false);
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (ft_isdigit(s[i]) == 0)
-		{
-			return (false);
-		}
-		i++;
-	}
-	return (true);
-}
-
-int	input_checker(int argc, char **argv)
-{
-	int	i;
-
-	if (argc != 5 && argc != 6)
-		return (1);
-	i = 1;
-	while (i < argc)
-	{
-		if (has_digits_only(argv[i]) == false)
-			return (2);
-		i++;
-	}
-	return (0);
+	if (gettimeofday(&tv, NULL) == -1)
+		return (-1);
+	time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+	return (time);
 }

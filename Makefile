@@ -6,7 +6,7 @@
 #    By: omaly <omaly@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 13:26:11 by omaly             #+#    #+#              #
-#    Updated: 2025/12/03 19:08:30 by omaly            ###   ########.fr        #
+#    Updated: 2025/12/04 21:55:46 by omaly            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,11 +26,22 @@ CFLAGS :=	-Wall \
 RM = rm -rf
 
 # Source files
-MAIN_SRCS =	src/philo.c \
+MAIN_SRCS =	src/philosophers.c \
 			src/input_checker.c \
-			src/error.c
+			src/data_setup.c \
+			src/forks_setup.c \
+			src/philos_setup.c \
+			src/run_simulation.c \
+			src/routine.c \
+			src/allocate_threads.c \
+			src/error.c \
+			src/get_time.c
 
-SRCS = $(MAIN_SRCS)
+UTILS_SRCS =	src/utils/ft_isdigit.c \
+				src/utils/ft_aatoi.c \
+				src/utils/is_whitespace.c
+
+SRCS = $(MAIN_SRCS) $(UTILS_SRCS)
 
 # Object files
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRCS))

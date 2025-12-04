@@ -1,49 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_checker.c                                    :+:      :+:    :+:   */
+/*   allocate_threads.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/03 18:33:11 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 22:00:43 by omaly            ###   ########.fr       */
+/*   Created: 2025/12/04 15:46:22 by omaly             #+#    #+#             */
+/*   Updated: 2025/12/04 16:02:27 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-bool	has_digits_only(char *s)
+int	allocate_threads(pthread_t **threads, size_t count)
 {
-	size_t	i;
-
-	if (!s)
-		return (false);
-	if (s[0] == '\0')
-		return (false);
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (ft_isdigit(s[i]) == 0)
-		{
-			return (false);
-		}
-		i++;
-	}
-	return (true);
-}
-
-int	input_checker(int argc, char **argv)
-{
-	int	i;
-
-	if (argc != 5 && argc != 6)
+	if (threads == NULL)
 		return (1);
-	i = 1;
-	while (i < argc)
-	{
-		if (has_digits_only(argv[i]) == false)
-			return (2);
-		i++;
-	}
+	*threads = malloc(sizeof(pthread_t) * count);
+	if (*threads == NULL)
+		return (2);
 	return (0);
 }

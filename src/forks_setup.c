@@ -1,49 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   input_checker.c                                    :+:      :+:    :+:   */
+/*   forks_setup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/03 18:33:11 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 22:00:43 by omaly            ###   ########.fr       */
+/*   Created: 2025/12/04 14:40:04 by omaly             #+#    #+#             */
+/*   Updated: 2025/12/04 15:11:05 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-bool	has_digits_only(char *s)
+int	forks_init(pthread_mutex_t *forks, size_t count)
 {
 	size_t	i;
 
-	if (!s)
-		return (false);
-	if (s[0] == '\0')
-		return (false);
+	if (forks == NULL)
+		return (1);
 	i = 0;
-	while (s[i] != '\0')
+	while (i < count)
 	{
-		if (ft_isdigit(s[i]) == 0)
+		if (pthread_mutex_init(&forks[i], NULL) != 0)
 		{
-			return (false);
+			while (i > 0)
+			{
+				i--;
+				pthread_mutex_destroy(&forks[i]);
+			}
+			return (2);
 		}
 		i++;
 	}
-	return (true);
+	return (0);
 }
 
-int	input_checker(int argc, char **argv)
+int	forks_setup(pthread_mutex_t **forks, size_t count)
 {
-	int	i;
-
-	if (argc != 5 && argc != 6)
+	*forks = malloc(sizeof(pthread_mutex_t) * count);
+	if (*forks == NULL)
 		return (1);
-	i = 1;
-	while (i < argc)
+	if (forks_init(*forks, count) != 0)
 	{
-		if (has_digits_only(argv[i]) == false)
-			return (2);
-		i++;
+		free(*forks);
+		return (2);
 	}
 	return (0);
 }

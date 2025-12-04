@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 22:58:47 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 23:04:32 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/04 23:46:40 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	write_status(t_philo *philo, char *s)
 	{
 		current_time = get_time();
 		timestamp = current_time - philo->data->start_time;
-		printf("%zu %d %s\n", timestamp, philo->id, s);
+		printf("%ld %d %s\n", timestamp, philo->id, s);
 	}
 	pthread_mutex_unlock(philo->write_lock);
 }

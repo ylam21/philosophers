@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 21:47:42 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 23:38:54 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/04 23:45:00 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	check_all_full(t_philo *philos, size_t count)
 	int		meals_eaten;
 
 	limit = philos[0].data->total_meals;
+	if (limit == -1)
+		return (0);
 	i = 0;
 	while (i < count)
 	{
 		meals_eaten = read_lock(&philos[i].meals_eaten, &philos[i].meal_lock);
-		if (meals_eaten != limit)
-		{
+		if (meals_eaten < limit)
 			return (0);
-		}
 		i++;
 	}
 	return (1);
@@ -65,11 +65,18 @@ void	monitor(t_philo *philos, size_t count)
 	while (someone_died == 0)
 	{
 		check_starvation(philos, count, &someone_died);
-		if (philos->data->total_meals != -1 && check_all_full(philos, count) == 1)
+		if (someone_died)
 		{
 			write_lock(philos->stop_flag, philos->stop_lock, 1);
 			break ;
 		}
+		if (philos->data->total_meals != -1 && check_all_full(philos,
+				count) == 1)
+		{
+			write_lock(philos->stop_flag, philos->stop_lock, 1);
+			break ;
+		}
+		usleep(1000);
 	}
 }
 

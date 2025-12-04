@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 21:47:42 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 23:45:00 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/05 00:06:51 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_all_full(t_philo *philos, size_t count)
 	return (1);
 }
 
-void	check_starvation(t_philo *philos, size_t count, int *died)
+void	check_starvation(t_philo *philos, size_t count)
 {
 	size_t	i;
 	long	time_since_meal;
@@ -50,7 +50,6 @@ void	check_starvation(t_philo *philos, size_t count, int *died)
 				philos[i].id);
 			write_lock(philos[i].stop_flag, philos[i].stop_lock, 1);
 			pthread_mutex_unlock(philos[i].write_lock);
-			*died = 1;
 			break ;
 		}
 		i++;
@@ -59,17 +58,11 @@ void	check_starvation(t_philo *philos, size_t count, int *died)
 
 void	monitor(t_philo *philos, size_t count)
 {
-	int	someone_died;
-
-	someone_died = 0;
-	while (someone_died == 0)
+	while (read_lock(philos->stop_flag, philos->stop_lock) == 0)
 	{
-		check_starvation(philos, count, &someone_died);
-		if (someone_died)
-		{
-			write_lock(philos->stop_flag, philos->stop_lock, 1);
+		check_starvation(philos, count);
+		if (read_lock(philos->stop_flag, philos->stop_lock) == 1)
 			break ;
-		}
 		if (philos->data->total_meals != -1 && check_all_full(philos,
 				count) == 1)
 		{

@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:03:14 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 23:04:48 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/05 00:05:54 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	think_routine(t_philo *philo)
 {
 	int	time_to_think;
 
-	time_to_think = 0;
+	time_to_think = 10;
 	write_status(philo, "is thinking");
 	usleep(time_to_think * 1000);
 }
@@ -51,6 +51,14 @@ void	*routine(void *arg)
 	philo->last_meal_time = get_time();
 	if (philo->id % 2 == 0)
 		usleep(1000);
+	if (philo->data->philo_count == 1)
+	{
+		pthread_mutex_lock(philo->left_fork);
+		write_status(philo, "has taken a fork");
+		usleep(philo->data->time_to_die * 1000);
+		pthread_mutex_unlock(philo->left_fork);
+		return (NULL);
+	}
 	while (read_lock(philo->stop_flag, philo->stop_lock) == 0)
 	{
 		eat_routine(philo);

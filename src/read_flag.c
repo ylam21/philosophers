@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_lock.c                                        :+:      :+:    :+:   */
+/*   read_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 22:55:58 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 23:01:17 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/05 13:29:05 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	read_lock(int *ptr, pthread_mutex_t *mutex)
+int	read_flag(int *ptr, pthread_mutex_t *mutex)
 {
 	int	read;
 

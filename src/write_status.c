@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 22:58:47 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/05 12:10:59 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/05 13:25:28 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	write_status(t_philo *philo, t_data *data, char *s)
 	long	timestamp;
 
 	pthread_mutex_lock(&data->write_lock);
-	if (read_lock(&data->stop_flag, &data->stop_lock) == 0)
+	if (read_flag(&data->stop_flag, &data->stop_lock) == 0)
 	{
 		current_time = get_time();
 		timestamp = current_time - data->start_time;

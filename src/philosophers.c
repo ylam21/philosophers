@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:28:33 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/05 12:37:57 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/05 13:19:13 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 		return (print_error(ERR_PHILOS_SETUP));
 	if (allocate_threads(&threads, data.philo_count) != 0)
 		return (print_error(ERR_ALLOCATE_THREADS));
-	if (run_simulation(threads, philos, &data, data.philo_count) != 0)
+	if (run_simulation(threads, philos, &data) != 0)
 		return (print_error(ERR_RUN_SIMULATION));
 	cleanup(philos, &data, forks, threads);
 	return (0);

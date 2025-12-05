@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 14:16:16 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/05 12:30:15 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/05 12:56:20 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int	data_setup(t_data *data, int argc, char **argv)
 		return (7);
 	if (pthread_mutex_init(&data->meal_lock, NULL) != 0)
 		return (8);
-	data->start_time = get_time();
+	data->start_time = 0;
 	return (0);
 }

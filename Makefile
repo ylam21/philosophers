@@ -6,7 +6,7 @@
 #    By: omaly <omaly@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 13:26:11 by omaly             #+#    #+#              #
-#    Updated: 2025/12/05 12:38:21 by omaly            ###   ########.fr        #
+#    Updated: 2025/12/05 13:30:27 by omaly            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,8 @@ MAIN_SRCS =	src/philosophers.c \
 			src/forks_setup.c \
 			src/philos_setup.c \
 			src/run_simulation.c \
-			src/read_lock.c \
-			src/write_lock.c \
+			src/read_flag.c \
+			src/write_flag.c \
 			src/write_status.c \
 			src/routine.c \
 			src/allocate_threads.c \

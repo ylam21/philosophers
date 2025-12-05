@@ -6,23 +6,23 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 22:58:47 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 23:46:40 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/05 12:10:59 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	write_status(t_philo *philo, char *s)
+void	write_status(t_philo *philo, t_data *data, char *s)
 {
 	long	current_time;
 	long	timestamp;
 
-	pthread_mutex_lock(philo->write_lock);
-	if (read_lock(philo->stop_flag, philo->stop_lock) == 0)
+	pthread_mutex_lock(&data->write_lock);
+	if (read_lock(&data->stop_flag, &data->stop_lock) == 0)
 	{
 		current_time = get_time();
-		timestamp = current_time - philo->data->start_time;
+		timestamp = current_time - data->start_time;
 		printf("%ld %d %s\n", timestamp, philo->id, s);
 	}
-	pthread_mutex_unlock(philo->write_lock);
+	pthread_mutex_unlock(&data->write_lock);
 }

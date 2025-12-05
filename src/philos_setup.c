@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:04:15 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 22:20:10 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/05 12:30:21 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,8 @@ int	philos_setup(t_philo **philos, pthread_mutex_t *forks, t_data *data)
 	{
 		(*philos)[i].id = i + 1;
 		(*philos)[i].data = data;
-		(*philos)[i].stop_lock = &data->stop_lock;
-		(*philos)[i].write_lock = &data->write_lock;
-		(*philos)[i].stop_flag = &data->stop_flag;
 		(*philos)[i].meals_eaten = 0;
 		(*philos)[i].last_meal_time = 0;
-		pthread_mutex_init(&(*philos)[i].meal_lock, NULL);
 		(*philos)[i].left_fork = &forks[i];
 		(*philos)[i].right_fork = &forks[(i + 1) % data->philo_count];
 		i++;

@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 18:33:28 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 23:03:21 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/05 12:30:42 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,27 +35,21 @@ typedef struct s_data
 	int				stop_flag;
 	pthread_mutex_t	stop_lock;
 	pthread_mutex_t	write_lock;
+	pthread_mutex_t	meal_lock;
 }					t_data;
 
 typedef struct s_philo
 {
 	int				id;
-
+	t_data			*data;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-
-	pthread_mutex_t	*stop_lock;
-	pthread_mutex_t	*write_lock;
-	int				*stop_flag;
-	t_data			*data;
-
 	int				meals_eaten;
 	long			last_meal_time;
-	pthread_mutex_t	meal_lock;
 }					t_philo;
 
 int					input_checker(int argc, char **argv);
-void				write_status(t_philo *philo, char *s);
+void				write_status(t_philo *philo, t_data *data, char *s);
 int					read_lock(int *ptr, pthread_mutex_t *mutex);
 void				write_lock(int *ptr, pthread_mutex_t *mutex, int value);
 void				*routine(void *arg);
@@ -66,5 +60,5 @@ int					philos_setup(t_philo **philos, pthread_mutex_t *forks,
 						t_data *data);
 long				get_time(void);
 int					run_simulation(pthread_t *threads, t_philo *philos,
-						size_t count);
+						t_data *data, size_t count);
 #endif

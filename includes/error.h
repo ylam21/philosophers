@@ -6,20 +6,23 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 19:00:09 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 21:50:13 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/05 14:43:25 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
 
-# define ERR_INVALID_INPUT "Error: Invalid input\n"
-# define ERR_CONFIG_SETUP "Error: Failed to setup t_config struct\n"
-# define ERR_FORKS_SETUP "Error: Failed to setup forks\n"
-# define ERR_PHILOS_SETUP "Error: Failed to setup philos\n"
-# define ERR_STATE_SETUP "Error: Failed to setup state\n"
-# define ERR_ALLOCATE_THREADS "Error: Failed to allocate threads\n"
-# define ERR_RUN_SIMULATION "Error: Failed to run the simulation\n"
+# define ERR_ATOI "Error: Atoi returned error\n"
+# define ERR_ARG_COUNT "Error: Invalid argument count\n"
+# define ERR_NONDIGIT_ARG "Error: One of the arguments has non-digit character\n"
+# define ERR_MUTEX_INIT "Error: Failed to initialize mutex\n"
+# define ERR_MUTEX_DESTROY "Error: Failed to destroy mutex\n"
+# define ERR_ZERO_PHILO "Error: No philos no fun\n"
+# define ERR_MALLOC "Error: Failed to malloc memory\n"
+# define ERR_PTHREAD_CREATE "Error: Failed to create threads\n"
+# define ERR_PTHREAD_JOIN "Error: Failed to join threads\n"
+# define ERR_GET_TIME "Error: Time does not exist bro\n"
 
 int	print_error(char *error_msg);
 #endif

@@ -6,19 +6,22 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:57:03 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 22:47:05 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/05 15:41:54 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-long	get_time(void)
+int	get_timestamp_millisec(void)
 {
 	struct timeval	tv;
-	int				time;
+	int			time;
 
 	if (gettimeofday(&tv, NULL) == -1)
+	{
+		print_error(ERR_GET_TIME);
 		return (-1);
+	}
 	time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 	return (time);
 }

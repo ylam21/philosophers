@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 21:47:42 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/05 13:27:43 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/05 16:06:31 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_meals(t_philo *philos, t_data *data)
 	i = 0;
 	while (i < data->philo_count)
 	{
-		meals_eaten = read_flag(&philos->meals_eaten, &data->meal_lock);
+		meals_eaten = read_flag(&philos[i].meals_eaten, &data->meal_lock);
 		if (meals_eaten < limit)
 			return ;
 		i++;
@@ -33,20 +33,20 @@ void	check_meals(t_philo *philos, t_data *data)
 
 void	check_starvation(t_philo *philos, t_data *data)
 {
-	int		i;
-	long	time_since_meal;
+	int	i;
+	int	time_since_meal;
 
 	i = 0;
 	while (i < data->philo_count)
 	{
 		pthread_mutex_lock(&data->meal_lock);
-		time_since_meal = get_time() - philos[i].last_meal_time;
+		time_since_meal = get_timestamp_millisec() - philos[i].last_meal_time;
 		pthread_mutex_unlock(&data->meal_lock);
 		if (time_since_meal > data->time_to_die)
 		{
 			write_flag(&data->stop_flag, &data->stop_lock, 1);
 			pthread_mutex_lock(&data->write_lock);
-			printf("%ld %d died\n", get_time() - data->start_time,
+			printf("%d %d died\n", get_timestamp_millisec() - data->start_time,
 				philos[i].id);
 			pthread_mutex_unlock(&data->write_lock);
 			break ;
@@ -84,12 +84,12 @@ int	run_simulation(pthread_t *threads, t_philo *philos, t_data *data)
 	int	meal_limit_set;
 
 	meal_limit_set = data->total_meals != -1;
-	data->start_time = get_time();
+	data->start_time = get_timestamp_millisec();
 	i = 0;
 	while (i < data->philo_count)
 	{
 		if (pthread_create(&threads[i], NULL, &routine, &philos[i]) != 0)
-			return (1);
+			return (print_error(ERR_PTHREAD_CREATE));
 		i++;
 	}
 	if (meal_limit_set)
@@ -100,7 +100,7 @@ int	run_simulation(pthread_t *threads, t_philo *philos, t_data *data)
 	while (i < data->philo_count)
 	{
 		if (pthread_join(threads[i], NULL) != 0)
-			return (2);
+			return (print_error(ERR_PTHREAD_JOIN));
 		i++;
 	}
 	return (0);

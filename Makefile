@@ -6,7 +6,7 @@
 #    By: omaly <omaly@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 13:26:11 by omaly             #+#    #+#              #
-#    Updated: 2025/12/05 13:30:27 by omaly            ###   ########.fr        #
+#    Updated: 2025/12/05 15:44:11 by omaly            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ MAIN_SRCS =	src/philosophers.c \
 			src/allocate_threads.c \
 			src/error.c \
 			src/cleanup.c \
-			src/get_time.c
+			src/get_timestamp_millisec.c
 
 UTILS_SRCS =	src/utils/ft_isdigit.c \
 				src/utils/ft_aatoi.c \

@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:03:14 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/05 13:28:10 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/05 16:12:43 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	eat_routine(t_philo *philo, t_data *data)
 	write_status(philo, data, "has taken a fork");
 	write_status(philo, data, "is eating");
 	pthread_mutex_lock(&data->meal_lock);
-	philo->last_meal_time = get_time();
+	philo->last_meal_time = get_timestamp_millisec();
 	philo->meals_eaten = philo->meals_eaten + 1;
 	pthread_mutex_unlock(&data->meal_lock);
 	usleep(data->time_to_eat * 1000);
@@ -59,11 +59,11 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	data = philo->data;
-	philo->last_meal_time = get_time();
+	philo->last_meal_time = get_timestamp_millisec();
 	if (data->philo_count == 1)
 		return (handle_one_philo(philo, data));
 	if (philo->id % 2 == 0)
-		usleep(1000);
+		usleep(1);
 	while (read_flag(&data->stop_flag, &data->stop_lock) == 0)
 	{
 		eat_routine(philo, data);

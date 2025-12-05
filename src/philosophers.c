@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:28:33 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/05 13:19:13 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/05 15:38:31 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ int	main(int argc, char **argv)
 	t_philo			*philos;
 
 	if (input_checker(argc, argv) != 0)
-		return (print_error(ERR_INVALID_INPUT));
+		return (1);
 	if (data_setup(&data, argc, argv) != 0)
-		return (print_error(ERR_CONFIG_SETUP));
+		return (2);
 	if (forks_setup(&forks, data.philo_count) != 0)
-		return (print_error(ERR_FORKS_SETUP));
+		return (clean_data(&data), 3);
 	if (philos_setup(&philos, forks, &data) != 0)
-		return (print_error(ERR_PHILOS_SETUP));
+		return (cleanup(philos, &data, forks, threads), 4);
 	if (allocate_threads(&threads, data.philo_count) != 0)
-		return (print_error(ERR_ALLOCATE_THREADS));
+		return (cleanup(philos, &data, forks, threads), 5);
 	if (run_simulation(threads, philos, &data) != 0)
-		return (print_error(ERR_RUN_SIMULATION));
+		return (cleanup(philos, &data, forks, threads), 6);
 	cleanup(philos, &data, forks, threads);
 	return (0);
 }

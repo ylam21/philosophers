@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 18:33:28 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/05 12:30:42 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/05 12:37:40 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,6 @@ int					philos_setup(t_philo **philos, pthread_mutex_t *forks,
 long				get_time(void);
 int					run_simulation(pthread_t *threads, t_philo *philos,
 						t_data *data, size_t count);
+void				cleanup(t_philo *philos, t_data *data,
+						pthread_mutex_t *forks, pthread_t *threads);
 #endif

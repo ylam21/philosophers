@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:03:14 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/05 12:30:08 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/05 12:39:16 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	*routine(void *arg)
 			break ;
 		sleep_routine(philo, data);
 		think_routine(philo, data);
+		usleep(1000);
 	}
 	return (NULL);
 }

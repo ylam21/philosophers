@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:03:14 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/06 12:07:01 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/06 12:22:21 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,7 @@ void	sleep_routine(t_philo *philo, t_data *data)
 
 void	think_routine(t_philo *philo, t_data *data)
 {
-	int	time_to_think;
-
-	time_to_think = 1;
 	write_status(philo, data, "is thinking");
-	usleep(time_to_think * 1000);
 }
 
 void	eat_routine(t_philo *philo, t_data *data)

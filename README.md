@@ -31,3 +31,10 @@ bin/philo 6 800 200 200 100 > log
 ```sh
 test/checker.sh <logfile> <number_of_philos>
 ```
+**Example ouput:**
+Philo 1 has eaten 100 times.
+Philo 2 has eaten 100 times.
+Philo 3 has eaten 100 times.
+Philo 4 has eaten 100 times.
+Philo 5 has eaten 100 times.
+Philo 6 has eaten 100 times.

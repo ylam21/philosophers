@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:03:14 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/05 16:12:43 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/06 12:07:01 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	*routine(void *arg)
 	if (data->philo_count == 1)
 		return (handle_one_philo(philo, data));
 	if (philo->id % 2 == 0)
-		usleep(1);
+		usleep(100);
 	while (read_flag(&data->stop_flag, &data->stop_lock) == 0)
 	{
 		eat_routine(philo, data);

@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 21:47:42 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/05 16:06:31 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/06 18:48:43 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,30 +78,14 @@ void	monitor_with_meals(t_philo *philos, t_data *data)
 	}
 }
 
-int	run_simulation(pthread_t *threads, t_philo *philos, t_data *data)
+void	monitor(t_philo *philos, t_data *data)
 {
-	int	i;
 	int	meal_limit_set;
 
 	meal_limit_set = data->total_meals != -1;
-	data->start_time = get_timestamp_millisec();
-	i = 0;
-	while (i < data->philo_count)
-	{
-		if (pthread_create(&threads[i], NULL, &routine, &philos[i]) != 0)
-			return (print_error(ERR_PTHREAD_CREATE));
-		i++;
-	}
 	if (meal_limit_set)
 		monitor_with_meals(philos, data);
 	else
 		monitor_default(philos, data);
-	i = 0;
-	while (i < data->philo_count)
-	{
-		if (pthread_join(threads[i], NULL) != 0)
-			return (print_error(ERR_PTHREAD_JOIN));
-		i++;
-	}
-	return (0);
+	return ;
 }

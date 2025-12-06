@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:28:33 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/05 15:38:31 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/06 18:53:42 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,11 @@ int	main(int argc, char **argv)
 		return (cleanup(philos, &data, forks, threads), 4);
 	if (allocate_threads(&threads, data.philo_count) != 0)
 		return (cleanup(philos, &data, forks, threads), 5);
-	if (run_simulation(threads, philos, &data) != 0)
+	if (create_threads(threads, philos, &data) != 0)
 		return (cleanup(philos, &data, forks, threads), 6);
+	monitor(philos, &data);
+	if (join_threads(threads, data.philo_count) != 0)
+		return (cleanup(philos, &data, forks, threads), 7);
 	cleanup(philos, &data, forks, threads);
 	return (0);
 }

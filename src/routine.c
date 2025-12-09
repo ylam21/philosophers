@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:03:14 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/06 12:22:21 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/09 23:22:00 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,10 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	data = philo->data;
-	philo->last_meal_time = get_timestamp_millisec();
 	if (data->philo_count == 1)
 		return (handle_one_philo(philo, data));
 	if (philo->id % 2 == 0)
-		usleep(100);
+		usleep(1000);
 	while (read_flag(&data->stop_flag, &data->stop_lock) == 0)
 	{
 		eat_routine(philo, data);

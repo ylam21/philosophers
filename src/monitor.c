@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run_simulation.c                                   :+:      :+:    :+:   */
+/*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 21:47:42 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/06 18:48:43 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/09 23:27:14 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void	check_meals(t_philo *philos, t_data *data)
 
 void	check_starvation(t_philo *philos, t_data *data)
 {
-	int	i;
-	int	time_since_meal;
+	int		i;
+	long	time_since_meal;
 
 	i = 0;
 	while (i < data->philo_count)
@@ -46,7 +46,7 @@ void	check_starvation(t_philo *philos, t_data *data)
 		{
 			write_flag(&data->stop_flag, &data->stop_lock, 1);
 			pthread_mutex_lock(&data->write_lock);
-			printf("%d %d died\n", get_timestamp_millisec() - data->start_time,
+			printf("%ld %d died\n", get_timestamp_millisec() - data->start_time,
 				philos[i].id);
 			pthread_mutex_unlock(&data->write_lock);
 			break ;
@@ -62,6 +62,7 @@ void	monitor_default(t_philo *philos, t_data *data)
 		check_starvation(philos, data);
 		if (read_flag(&data->stop_flag, &data->stop_lock) == 1)
 			break ;
+		usleep(1000);
 	}
 }
 
@@ -75,6 +76,7 @@ void	monitor_with_meals(t_philo *philos, t_data *data)
 		check_meals(philos, data);
 		if (read_flag(&data->stop_flag, &data->stop_lock) == 1)
 			break ;
+		usleep(1000);
 	}
 }
 

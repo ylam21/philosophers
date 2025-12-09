@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 18:33:28 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/06 19:03:45 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/09 23:20:15 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 typedef struct s_data
 {
 	int				philo_count;
-	int				start_time;
+	long			start_time;
 	int				time_to_die;
 	int				time_to_sleep;
 	int				time_to_eat;
@@ -45,7 +45,7 @@ typedef struct s_philo
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	int				meals_eaten;
-	int				last_meal_time;
+	long			last_meal_time;
 }					t_philo;
 
 int					input_checker(int argc, char **argv);
@@ -58,7 +58,7 @@ int					data_setup(t_data *data, int argc, char **argv);
 int					forks_setup(pthread_mutex_t **forks, int fork_count);
 int					philos_setup(t_philo **philos, pthread_mutex_t *forks,
 						t_data *data);
-int					get_timestamp_millisec(void);
+long				get_timestamp_millisec(void);
 void				cleanup(t_philo *philos, t_data *data,
 						pthread_mutex_t *forks, pthread_t *threads);
 void				clean_data(t_data *data);

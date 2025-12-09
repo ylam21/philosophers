@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:46:22 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/06 18:50:30 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/09 23:17:25 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	create_threads(pthread_t *threads, t_philo *philos, t_data *data)
 	data->start_time = get_timestamp_millisec();
 	while (i < data->philo_count)
 	{
+		philos[i].last_meal_time = get_timestamp_millisec();
 		if (pthread_create(&threads[i], NULL, &routine, &philos[i]) != 0)
 			return (print_error(ERR_PTHREAD_CREATE));
 		i++;

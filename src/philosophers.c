@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:28:33 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/06 18:53:42 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/09 17:16:46 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 	pthread_t		*threads;
 	t_philo			*philos;
 
+	threads = NULL;
 	if (input_checker(argc, argv) != 0)
 		return (1);
 	if (data_setup(&data, argc, argv) != 0)

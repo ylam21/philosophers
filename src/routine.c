@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:03:14 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/09 23:22:00 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/19 16:51:38 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,27 @@ void	think_routine(t_philo *philo, t_data *data)
 	write_status(philo, data, "is thinking");
 }
 
+void	take_forks(t_philo *philo, t_data *data)
+{
+	if (philo->id % 2 == 0)
+	{
+		pthread_mutex_lock(philo->left_fork);
+		write_status(philo, data, "has taken a fork");
+		pthread_mutex_lock(philo->right_fork);
+		write_status(philo, data, "has taken a fork");
+	}
+	else
+	{
+		pthread_mutex_lock(philo->right_fork);
+		write_status(philo, data, "has taken a fork");
+		pthread_mutex_lock(philo->left_fork);
+		write_status(philo, data, "has taken a fork");
+	}
+}
+
 void	eat_routine(t_philo *philo, t_data *data)
 {
-	pthread_mutex_lock(philo->left_fork);
-	write_status(philo, data, "has taken a fork");
-	pthread_mutex_lock(philo->right_fork);
-	write_status(philo, data, "has taken a fork");
+	take_forks(philo, data);
 	write_status(philo, data, "is eating");
 	pthread_mutex_lock(&data->meal_lock);
 	philo->last_meal_time = get_timestamp_millisec();
@@ -57,8 +72,6 @@ void	*routine(void *arg)
 	data = philo->data;
 	if (data->philo_count == 1)
 		return (handle_one_philo(philo, data));
-	if (philo->id % 2 == 0)
-		usleep(1000);
 	while (read_flag(&data->stop_flag, &data->stop_lock) == 0)
 	{
 		eat_routine(philo, data);

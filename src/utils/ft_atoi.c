@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_aatoi.c                                         :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 14:09:52 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 14:11:31 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/07 15:25:05 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	accumulate_number(const char *s, unsigned int i, long *ret, int sign)
 	return (0);
 }
 
-int	ft_aatoi(const char *s, int *out)
+int	ft_atoi(const char *s, int *out)
 {
 	unsigned int	i;
 	unsigned int	minus;

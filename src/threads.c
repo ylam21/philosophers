@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:46:22 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/20 16:05:03 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/07 16:54:37 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	create_single_thread(pthread_t *threads, t_philo *philos, int idx)
 
 int	create_threads(pthread_t *threads, t_philo *philos, t_data *data)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	data->start_time = get_timestamp_millisec();
@@ -56,12 +56,12 @@ int	create_threads(pthread_t *threads, t_philo *philos, t_data *data)
 	return (0);
 }
 
-int	join_threads(pthread_t *threads, int thread_count)
+int	join_threads(pthread_t *threads, size_t philo_count)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (i < thread_count)
+	while (i < philo_count)
 	{
 		if (pthread_join(threads[i], NULL) != 0)
 			return (print_error(ERR_PTHREAD_JOIN));

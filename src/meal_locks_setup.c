@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   forks_setup.c                                      :+:      :+:    :+:   */
+/*   meal_locks_setup.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/04 14:40:04 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/07 16:51:01 by omaly            ###   ########.fr       */
+/*   Created: 2026/01/07 16:56:52 by omaly             #+#    #+#             */
+/*   Updated: 2026/01/07 16:57:12 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	forks_setup(t_fork **forks, size_t philo_count)
+int	meal_locks_setup(pthread_mutex_t **meal_locks, size_t philo_count)
 {
-	size_t	i;
+	size_t i;
 
-	if (philo_count == 0)
-	{
-		return (print_error(ERR_ZERO_PHILO));
-	}
-	*forks = malloc(philo_count * sizeof(t_fork));
-	if (*forks == NULL)
+	*meal_locks = malloc(philo_count * sizeof(pthread_mutex_t));
+	if (*meal_locks == NULL)
 	{
 		return (print_error(ERR_MALLOC));
 	}
 	i = 0;
 	while (i < philo_count)
 	{
-		*forks[i]->fork_status = FORK_RELEASED;
-		if (pthread_mutex_init((*forks)[i].fork_lock, NULL) != 0)
+		if (pthread_mutex_init(&(*meal_locks[i]), NULL) != 0)
 		{
-			while (--i)
-			{
-				if (pthread_mutex_destroy((*forks)[i].fork_lock) != 0)
-					print_error(ERR_MUTEX_DESTROY);
-			}
-			free(*forks);
+			free(*meal_locks);
 			return (print_error(ERR_MUTEX_INIT));
 		}
 		i++;

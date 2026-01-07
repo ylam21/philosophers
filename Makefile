@@ -6,7 +6,7 @@
 #    By: omaly <omaly@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 13:26:11 by omaly             #+#    #+#              #
-#    Updated: 2026/01/07 13:38:26 by omaly            ###   ########.fr        #
+#    Updated: 2026/01/07 16:57:27 by omaly            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,13 +39,14 @@ MAIN_SRCS =	src/main.c \
 			src/sleep_routine.c \
 			src/eat_routine.c \
 			src/think_routine.c \
+			src/meal_locks_setup.c \
 			src/threads.c \
 			src/error.c \
 			src/cleanup.c \
 			src/get_timestamp_millisec.c
 
 UTILS_SRCS =	src/utils/ft_isdigit.c \
-				src/utils/ft_aatoi.c \
+				src/utils/ft_atoi.c \
 				src/utils/is_whitespace.c
 
 SRCS = $(MAIN_SRCS) $(UTILS_SRCS)

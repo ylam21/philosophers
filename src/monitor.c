@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 21:47:42 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/07 18:34:36 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/07 18:48:53 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	monitor_default(t_philo *philos, pthread_mutex_t *meal_locks, t_data *data)
 		check_starvation(philos, meal_locks, data);
 		if (read_flag(&data->stop_flag, &data->stop_lock) == 1)
 			break ;
-		usleep(100 * 1000);
+		usleep(1000);
 	}
 }
 
@@ -76,7 +76,7 @@ void	monitor_with_meals(t_philo *philos, pthread_mutex_t *meal_locks, t_data *da
 		check_meals(philos, meal_locks, data);
 		if (read_flag(&data->stop_flag, &data->stop_lock) == 1)
 			break ;
-		usleep(100 * 1000);
+		usleep(1000);
 	}
 }
 

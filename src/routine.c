@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:03:14 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/07 18:20:23 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/07 19:01:26 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	*routine_even(void *arg)
 		sleep_routine(philo, data);
 		if (read_flag(&data->stop_flag, &data->stop_lock) != 0)
 			break ;
-		think_routine(philo, data);
+		think_routine_even(philo, data);
 	}
 	return (NULL);
 }
@@ -61,6 +61,7 @@ void	*routine_odd(void *arg)
 
 	philo = (t_philo *)arg;
 	data = philo->data;
+	usleep(15000);
 	pthread_mutex_lock(philo->meal_lock);
 	philo->last_meal_time = get_timestamp_millisec();
 	pthread_mutex_unlock(philo->meal_lock);
@@ -72,7 +73,7 @@ void	*routine_odd(void *arg)
 		sleep_routine(philo, data);
 		if (read_flag(&data->stop_flag, &data->stop_lock) != 0)
 			break ;
-		think_routine(philo, data);
+		think_routine_odd(philo, data);
 	}
 	return (NULL);
 }

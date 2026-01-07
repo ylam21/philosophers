@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 14:16:16 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/07 16:57:08 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/07 17:50:14 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
 
 int	data_setup(t_data *data, int argc, char **argv)
 {
-	if (ft_atoi(argv[1], (int *)&data->philo_count) != 0)
+	int temp = 0;
+	if (ft_atoi(argv[1], &temp) != 0)
 		return (print_error(ERR_ATOI));
+	data->philo_count = (size_t)temp;
 	if (ft_atoi(argv[2], &data->time_to_die) != 0)
 		return (print_error(ERR_ATOI));
 	if (ft_atoi(argv[3], &data->time_to_eat) != 0)

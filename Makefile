@@ -6,7 +6,7 @@
 #    By: omaly <omaly@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 13:26:11 by omaly             #+#    #+#              #
-#    Updated: 2025/12/06 18:49:38 by omaly            ###   ########.fr        #
+#    Updated: 2025/12/20 15:58:41 by omaly            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ MAIN_SRCS =	src/philosophers.c \
 			src/write_flag.c \
 			src/write_status.c \
 			src/routine.c \
+			src/activities.c \
 			src/threads.c \
 			src/error.c \
 			src/cleanup.c \

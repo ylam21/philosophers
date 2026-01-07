@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 18:33:28 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/09 23:20:15 by omaly            ###   ########.fr       */
+/*   Updated: 2025/12/20 16:04:48 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int					input_checker(int argc, char **argv);
 void				write_status(t_philo *philo, t_data *data, char *s);
 int					read_flag(int *ptr, pthread_mutex_t *mutex);
 void				write_flag(int *ptr, pthread_mutex_t *mutex, int value);
-void				*routine(void *arg);
 int					allocate_threads(pthread_t **threads, int thread_count);
 int					data_setup(t_data *data, int argc, char **argv);
 int					forks_setup(pthread_mutex_t **forks, int fork_count);
@@ -67,5 +66,12 @@ int					create_threads(pthread_t *threads, t_philo *philos,
 						t_data *data);
 int					join_threads(pthread_t *threads, int thread_count);
 void				monitor(t_philo *philos, t_data *data);
+void				*routine_single(void *arg);
+void				*routine_even(void *arg);
+void				*routine_odd(void *arg);
+void				eat_routine_even(t_philo *philo, t_data *data);
+void				eat_routine_odd(t_philo *philo, t_data *data);
+void				think_routine(t_philo *philo, t_data *data);
+void				sleep_routine(t_philo *philo, t_data *data);
 
 #endif

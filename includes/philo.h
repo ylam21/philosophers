@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 18:33:28 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/07 19:01:12 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/07 19:15:23 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,7 @@ void				*routine_even(void *arg);
 void				*routine_odd(void *arg);
 void				eat_routine_even(t_philo *philo, t_data *data);
 void				eat_routine_odd(t_philo *philo, t_data *data);
-void				think_routine_even(t_philo *philo, t_data *data);
-void				think_routine_odd(t_philo *philo, t_data *data);
+void				think_routine(t_philo *philo, t_data *data);
 void				sleep_routine(t_philo *philo, t_data *data);
 void				change_fork_status(int *fork_status, int value);
 

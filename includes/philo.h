@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 18:33:28 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/07 17:06:02 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/07 17:37:19 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef struct s_data
 
 typedef struct s_fork
 {
-	pthread_mutex_t	*fork_lock;
-	int				*fork_status;
+	pthread_mutex_t	fork_lock;
+	int				fork_status;
 }					t_fork;
 
 typedef struct s_philo

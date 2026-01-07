@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:03:14 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/07 16:53:21 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/07 17:41:14 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	*routine_single(void *arg)
 
 	philo = (t_philo *)arg;
 	data = philo->data;
-	pthread_mutex_lock(philo->left_fork->fork_lock);
-	change_fork_status(philo->left_fork->fork_status, FORK_TAKEN);
+	pthread_mutex_lock(&philo->left_fork->fork_lock);
+	change_fork_status(&philo->left_fork->fork_status, FORK_TAKEN);
 	write_status(philo, data, "has taken a fork");
 	usleep(data->time_to_die * 1000);
-	change_fork_status(philo->left_fork->fork_status, FORK_RELEASED);
-	pthread_mutex_unlock(philo->left_fork->fork_lock);
+	change_fork_status(&philo->left_fork->fork_status, FORK_RELEASED);
+	pthread_mutex_unlock(&philo->left_fork->fork_lock);
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 12:31:41 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/07 17:05:29 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/07 17:41:48 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	clean_forks(t_fork *forks, size_t philo_count)
 	i = 0;
 	while (i < philo_count)
 	{
-		if (pthread_mutex_destroy(forks[i].fork_lock) != 0)
+		if (pthread_mutex_destroy(&forks[i].fork_lock) != 0)
 			print_error(ERR_MUTEX_DESTROY);
 		i++;
 	}

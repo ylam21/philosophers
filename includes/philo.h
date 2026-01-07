@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 18:33:28 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/20 16:04:48 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/07 15:18:16 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_data
 	int				stop_flag;
 	pthread_mutex_t	stop_lock;
 	pthread_mutex_t	write_lock;
-	pthread_mutex_t	meal_lock;
+	pthread_mutex_t	*meal_locks;
 }					t_data;
 
 typedef struct s_philo
@@ -43,7 +43,10 @@ typedef struct s_philo
 	int				id;
 	t_data			*data;
 	pthread_mutex_t	*left_fork;
+	int				*left_fork_status;
 	pthread_mutex_t	*right_fork;
+	int				*right_fork_status;
+	pthread_mutex_t *meal_lock;
 	int				meals_eaten;
 	long			last_meal_time;
 }					t_philo;
@@ -54,12 +57,13 @@ int					read_flag(int *ptr, pthread_mutex_t *mutex);
 void				write_flag(int *ptr, pthread_mutex_t *mutex, int value);
 int					allocate_threads(pthread_t **threads, int thread_count);
 int					data_setup(t_data *data, int argc, char **argv);
-int					forks_setup(pthread_mutex_t **forks, int fork_count);
+int					forks_setup(pthread_mutex_t **forks, int **forks_status,
+						int fork_count);
 int					philos_setup(t_philo **philos, pthread_mutex_t *forks,
-						t_data *data);
+						int *forks_status, t_data *data);
 long				get_timestamp_millisec(void);
 void				cleanup(t_philo *philos, t_data *data,
-						pthread_mutex_t *forks, pthread_t *threads);
+						pthread_mutex_t *forks, int *forks_status ,pthread_t *threads);
 void				clean_data(t_data *data);
 void				clean_forks(pthread_mutex_t *forks, int fork_count);
 int					create_threads(pthread_t *threads, t_philo *philos,
@@ -73,5 +77,6 @@ void				eat_routine_even(t_philo *philo, t_data *data);
 void				eat_routine_odd(t_philo *philo, t_data *data);
 void				think_routine(t_philo *philo, t_data *data);
 void				sleep_routine(t_philo *philo, t_data *data);
+void				change_fork_status(int *fork_status, int value);
 
 #endif

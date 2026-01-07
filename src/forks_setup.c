@@ -6,13 +6,13 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 14:40:04 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/05 15:35:45 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/07 13:39:11 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	forks_setup(pthread_mutex_t **forks, int fork_count)
+int	forks_mutex_setup(pthread_mutex_t **forks, int fork_count)
 {
 	int	i;
 
@@ -36,6 +36,30 @@ int	forks_setup(pthread_mutex_t **forks, int fork_count)
 			return (print_error(ERR_MUTEX_INIT));
 		}
 		i++;
+	}
+	return (0);
+}
+
+int	forks_status_setup(int **forks_status, int fork_count)
+{
+	*forks_status = malloc(sizeof(int) * fork_count);
+	if (*forks_status == NULL)
+	{
+		return (print_error(ERR_MALLOC));
+	}
+	return (0);
+}
+
+int	forks_setup(pthread_mutex_t **forks, int **forks_status, int fork_count)
+{
+	if (forks_mutex_setup(forks, fork_count) != 0)
+	{
+		return (1);
+	}
+	if (forks_status_setup(forks_status, fork_count) != 0)
+	{
+		free(*forks_status);
+		return (2);
 	}
 	return (0);
 }

@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_flag.c                                       :+:      :+:    :+:   */
+/*   think_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/04 23:01:28 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/07 13:36:03 by omaly            ###   ########.fr       */
+/*   Created: 2025/12/20 15:56:03 by omaly             #+#    #+#             */
+/*   Updated: 2026/01/07 13:38:02 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	write_flag(int *ptr, pthread_mutex_t *mutex, int value)
+void	think_routine(t_philo *philo, t_data *data)
 {
-	pthread_mutex_lock(mutex);
-	*ptr = value;
-	pthread_mutex_unlock(mutex);
+	write_status(philo, data, "is thinking");
 }

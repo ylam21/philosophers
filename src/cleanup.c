@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 12:31:41 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/06 18:43:15 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/07 15:22:27 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 void	clean_data(t_data *data)
 {
-	if (pthread_mutex_destroy(&data->meal_lock) != 0)
-		print_error(ERR_MUTEX_DESTROY);
+	int	i;
+
+	i = 0;
+	while (i < data->philo_count)
+	{
+		if (pthread_mutex_destroy(&(data->meal_locks)[i]) != 0)
+			print_error(ERR_MUTEX_DESTROY);
+		i++;
+	}
 	if (pthread_mutex_destroy(&data->stop_lock) != 0)
 		print_error(ERR_MUTEX_DESTROY);
 	if (pthread_mutex_destroy(&data->write_lock) != 0)
@@ -36,13 +43,20 @@ void	clean_forks(pthread_mutex_t *forks, int fork_count)
 	free(forks);
 }
 
+void	clean_forks_status(int *forks_status)
+{
+	free(forks_status);
+}
+
 void	cleanup(t_philo *philos, t_data *data, pthread_mutex_t *forks,
-		pthread_t *threads)
+		int *forks_status, pthread_t *threads)
 {
 	if (data)
 		clean_data(data);
 	if (forks)
 		clean_forks(forks, data->philo_count);
+	if (forks_status)
+		clean_forks_status(forks_status);
 	if (threads)
 		free(threads);
 	if (philos)

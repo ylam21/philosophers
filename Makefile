@@ -6,7 +6,7 @@
 #    By: omaly <omaly@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 13:26:11 by omaly             #+#    #+#              #
-#    Updated: 2025/12/20 15:58:41 by omaly            ###   ########.fr        #
+#    Updated: 2026/01/07 13:38:26 by omaly            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ CFLAGS :=	-Wall \
 RM = rm -rf
 
 # Source files
-MAIN_SRCS =	src/philosophers.c \
+MAIN_SRCS =	src/main.c \
 			src/input_checker.c \
 			src/data_setup.c \
 			src/forks_setup.c \
@@ -36,7 +36,9 @@ MAIN_SRCS =	src/philosophers.c \
 			src/write_flag.c \
 			src/write_status.c \
 			src/routine.c \
-			src/activities.c \
+			src/sleep_routine.c \
+			src/eat_routine.c \
+			src/think_routine.c \
 			src/threads.c \
 			src/error.c \
 			src/cleanup.c \

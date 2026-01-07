@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_flag.c                                       :+:      :+:    :+:   */
+/*   sleep_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/04 23:01:28 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/07 13:36:03 by omaly            ###   ########.fr       */
+/*   Created: 2026/01/07 13:33:44 by omaly             #+#    #+#             */
+/*   Updated: 2026/01/07 13:34:06 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	write_flag(int *ptr, pthread_mutex_t *mutex, int value)
+void	sleep_routine(t_philo *philo, t_data *data)
 {
-	pthread_mutex_lock(mutex);
-	*ptr = value;
-	pthread_mutex_unlock(mutex);
+	write_status(philo, data, "is sleeping");
+	usleep(data->time_to_sleep * 1000);
 }

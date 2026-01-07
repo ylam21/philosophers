@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 21:47:42 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/19 21:36:06 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/07 15:21:55 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	check_meals(t_philo *philos, t_data *data)
 	i = 0;
 	while (i < data->philo_count)
 	{
-		meals_eaten = read_flag(&philos[i].meals_eaten, &data->meal_lock);
+		meals_eaten = read_flag(&philos[i].meals_eaten, &(data->meal_locks)[i]);
 		if (meals_eaten < limit)
 			return ;
 		i++;
@@ -39,9 +39,9 @@ void	check_starvation(t_philo *philos, t_data *data)
 	i = 0;
 	while (i < data->philo_count)
 	{
-		pthread_mutex_lock(&data->meal_lock);
+		pthread_mutex_lock(&(data->meal_locks)[i]);
 		time_since_meal = get_timestamp_millisec() - philos[i].last_meal_time;
-		pthread_mutex_unlock(&data->meal_lock);
+		pthread_mutex_unlock(&(data->meal_locks)[i]);
 		if (time_since_meal > data->time_to_die)
 		{
 			write_flag(&data->stop_flag, &data->stop_lock, 1);
@@ -62,7 +62,7 @@ void	monitor_default(t_philo *philos, t_data *data)
 		check_starvation(philos, data);
 		if (read_flag(&data->stop_flag, &data->stop_lock) == 1)
 			break ;
-		usleep(1000);
+		usleep(10 * 1000);
 	}
 }
 
@@ -76,7 +76,7 @@ void	monitor_with_meals(t_philo *philos, t_data *data)
 		check_meals(philos, data);
 		if (read_flag(&data->stop_flag, &data->stop_lock) == 1)
 			break ;
-		usleep(1000);
+		usleep(10 * 1000);
 	}
 }
 

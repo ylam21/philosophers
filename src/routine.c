@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:03:14 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/20 16:04:43 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/07 15:04:13 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	*routine_even(void *arg)
 
 	philo = (t_philo *)arg;
 	data = philo->data;
-	usleep(1000);
 	while (read_flag(&data->stop_flag, &data->stop_lock) == 0)
 	{
 		eat_routine_even(philo, data);

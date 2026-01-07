@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 18:33:28 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/07 16:57:53 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/07 17:06:02 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ int					meal_locks_setup(pthread_mutex_t **meal_locks,
 void				write_status(t_philo *philo, t_data *data, char *s);
 int					read_flag(int *ptr, pthread_mutex_t *mutex);
 void				write_flag(int *ptr, pthread_mutex_t *mutex, int value);
-int					allocate_threads(pthread_t **threads, int thread_count);
+int					allocate_threads(pthread_t **threads, size_t philo_count);
 int					forks_setup(t_fork **forks, size_t philo_count);
 int					data_setup(t_data *data, int argc, char **argv);
 int					philos_setup(t_philo **philos, t_fork *forks,
 						pthread_mutex_t *meal_locks, t_data *data);
 void				clean_data(t_data *data);
 void				cleanup(t_philo *philos, t_data *data, t_fork *forks,
-						pthread_t *threads);
+						pthread_t *threads, pthread_mutex_t *meal_locks);
 long				get_timestamp_millisec(void);
 int					create_threads(pthread_t *threads, t_philo *philos,
 						t_data *data);

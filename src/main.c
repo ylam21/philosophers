@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:28:33 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/07 16:58:56 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/07 17:06:35 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int argc, char **argv)
 	philos = NULL;
 	threads = NULL;
 	meal_locks = NULL;
+	forks = NULL;
 	if (input_checker(argc, argv) != 0)
 		return (1);
 	if (data_setup(&data, argc, argv) != 0)
@@ -30,16 +31,16 @@ int	main(int argc, char **argv)
 	if (forks_setup(&forks, data.philo_count) != 0)
 		return (clean_data(&data), 3);
 	if (meal_locks_setup(&meal_locks, data.philo_count) != 0)
-		return (cleanup(philos, &data, forks, threads), 4);
+		return (cleanup(philos, &data, forks, threads, meal_locks), 4);
 	if (philos_setup(&philos, forks, meal_locks, &data) != 0)
-		return (cleanup(philos, &data, forks, threads), 4);
+		return (cleanup(philos, &data, forks, threads, meal_locks), 4);
 	if (allocate_threads(&threads, data.philo_count) != 0)
-		return (cleanup(philos, &data, forks, threads), 5);
+		return (cleanup(philos, &data, forks, threads, meal_locks), 5);
 	if (create_threads(threads, philos, &data) != 0)
-		return (cleanup(philos, &data, forks, threads), 6);
+		return (cleanup(philos, &data, forks, threads, meal_locks), 6);
 	monitor(philos, meal_locks, &data);
 	if (join_threads(threads, data.philo_count) != 0)
-		return (cleanup(philos, &data, forks, threads), 7);
-	cleanup(philos, &data, forks, threads);
+		return (cleanup(philos, &data, forks, threads, meal_locks), 7);
+	cleanup(philos, &data, forks, threads, meal_locks);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 16:56:52 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/07 16:57:12 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/07 17:56:43 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	meal_locks_setup(pthread_mutex_t **meal_locks, size_t philo_count)
 	i = 0;
 	while (i < philo_count)
 	{
-		if (pthread_mutex_init(&(*meal_locks[i]), NULL) != 0)
+		if (pthread_mutex_init(&(*meal_locks)[i], NULL) != 0)
 		{
 			free(*meal_locks);
 			return (print_error(ERR_MUTEX_INIT));

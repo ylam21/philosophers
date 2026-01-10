@@ -24,3 +24,13 @@ void	write_status(t_philo *philo, t_data *data, char *status_msg)
 	}
 	pthread_mutex_unlock(&data->write_lock);
 }
+
+void	write_death(t_philo *philo, t_data *data)
+{
+	long	timestamp;
+
+	pthread_mutex_lock(&data->write_lock);
+	timestamp = get_timestamp_millisec() - data->start_time;
+	printf("%ld %d died\n", timestamp, philo->id);
+	pthread_mutex_unlock(&data->write_lock);
+}

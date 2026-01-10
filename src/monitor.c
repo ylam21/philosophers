@@ -45,10 +45,7 @@ void	check_starvation(t_philo *philos, pthread_mutex_t *meal_locks, t_data *data
 		if (time_since_meal > data->time_to_die)
 		{
 			write_flag(&data->stop_flag, &data->stop_lock, 1);
-			pthread_mutex_lock(&data->write_lock);
-			printf("%ld %d died\n", get_timestamp_millisec() - data->start_time,
-				philos[i].id);
-			pthread_mutex_unlock(&data->write_lock);
+			write_death(&philos[i], data);
 			break ;
 		}
 		i++;

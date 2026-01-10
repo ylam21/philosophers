@@ -60,6 +60,7 @@ int					input_checker(int argc, char **argv);
 int					meal_locks_setup(pthread_mutex_t **meal_locks,
 						size_t philo_count);
 void				write_status(t_philo *philo, t_data *data, char *s);
+void	write_death(t_philo *philo, t_data *data);
 int					read_flag(int *ptr, pthread_mutex_t *mutex);
 void				write_flag(int *ptr, pthread_mutex_t *mutex, int value);
 int					allocate_threads(pthread_t **threads, size_t philo_count);

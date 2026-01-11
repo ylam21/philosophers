@@ -61,7 +61,7 @@ void	*routine_odd(void *arg)
 
 	philo = (t_philo *)arg;
 	data = philo->data;
-	usleep(15000);
+	// usleep(15000);
 	pthread_mutex_lock(philo->meal_lock);
 	philo->last_meal_time = get_timestamp_millisec();
 	pthread_mutex_unlock(philo->meal_lock);

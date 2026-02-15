@@ -12,6 +12,14 @@
 
 #include "../includes/philo.h"
 
+void init(pthread_t** threads, pthread_mutex_t** meal_locks, t_philo** philos, t_fork** forks)
+{
+	*threads = NULL;
+	*meal_locks = NULL;
+	*philos = NULL;
+	*forks = NULL;
+}
+
 int	main(int argc, char **argv)
 {
 	t_data			data;
@@ -20,10 +28,7 @@ int	main(int argc, char **argv)
 	t_philo			*philos;
 	t_fork			*forks;
 
-	philos = NULL;
-	threads = NULL;
-	meal_locks = NULL;
-	forks = NULL;
+	init(&threads, &meal_locks, &philos, &forks);
 	if (input_checker(argc, argv) != 0)
 		return (1);
 	if (data_setup(&data, argc, argv) != 0)

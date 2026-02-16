@@ -3,18 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: omaly <omaly@student.42.fr>                +#+  +:+       +#+         #
+#    By: omaly <student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 13:26:11 by omaly             #+#    #+#              #
-#    Updated: 2026/01/07 16:57:27 by omaly            ###   ########.fr        #
+#    Updated: 2026/02/16 20:33:09 by omaly            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Project settings
 SRC_DIR := src
 BUILD_DIR := build
-BIN_DIR := bin
-NAME := $(BIN_DIR)/philo
+NAME := philo
 
 # Compiler settings
 CC := cc
@@ -56,12 +55,9 @@ OBJS = $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRCS))
 
 all: $(NAME)
 
-$(NAME): $(OBJS) | $(BIN_DIR)
+$(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) \
 	-o $@
-
-$(BIN_DIR):
-	mkdir -p $(BIN_DIR)
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
@@ -72,7 +68,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(BUILD_DIR) $(BIN_DIR)
+	$(RM) $(BUILD_DIR) 
 
 fclean: clean
 	$(RM) $(NAME)

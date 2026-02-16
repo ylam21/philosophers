@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
+/*   By: omaly <student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:03:14 by omaly             #+#    #+#             */
-/*   Updated: 2026/02/16 16:29:15 by omaly            ###   ########.fr       */
+/*   Updated: 2026/02/16 20:23:20 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,9 @@ void	*routine_odd(void *arg)
 
 	philo = (t_philo *)arg;
 	data = philo->data;
+	usleep(15000);
 	pthread_mutex_lock(philo->meal_lock);
 	philo->last_meal_time = get_timestamp_millisec();
-	printf("start time for odd id: %d, : %lu\n", philo->id, philo->last_meal_time
-		- data->start_time);
 	pthread_mutex_unlock(philo->meal_lock);
 	while (read_flag(&data->stop_flag, &data->stop_lock) == 0)
 	{

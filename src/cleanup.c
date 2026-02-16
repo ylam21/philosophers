@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 12:31:41 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/07 17:41:48 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/21 15:43:24 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,15 @@ void	clean_meal_locks(pthread_mutex_t *meal_locks, size_t philo_count)
 	free(meal_locks);
 }
 
-void	cleanup(t_philo *philos, t_data *data, t_fork *forks,
-		pthread_t *threads, pthread_mutex_t *meal_locks)
+void	cleanup(t_state *state)
 {
-	if (data)
-		clean_data(data);
-	if (forks)
-		clean_forks(forks, data->philo_count);
-	if (threads)
-		free(threads);
-	if (philos)
-		free(philos);
-	if (meal_locks)
-		clean_meal_locks(meal_locks, data->philo_count);
+	clean_data(&state->data);
+	if (state->forks)
+		clean_forks(state->forks, state->data.philo_count);
+	if (state->threads)
+		free(state->threads);
+	if (state->philos)
+		free(state->philos);
+	if (state->meal_locks)
+		clean_meal_locks(state->meal_locks, state->data.philo_count);
 }

@@ -6,12 +6,11 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 13:34:27 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/07 18:11:22 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/21 15:24:17 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
 
 void	change_fork_status(int *fork_status, int value)
 {

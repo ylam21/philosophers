@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 18:33:28 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/07 19:15:23 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/21 15:41:58 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,20 @@ typedef struct s_philo
 	long			last_meal_time;
 }					t_philo;
 
+typedef struct s_state
+{
+	t_data			data;
+	pthread_t		*threads;
+	pthread_mutex_t	*meal_locks;
+	t_philo			*philos;
+	t_fork			*forks;
+}					t_state;
+
 int					input_checker(int argc, char **argv);
 int					meal_locks_setup(pthread_mutex_t **meal_locks,
 						size_t philo_count);
 void				write_status(t_philo *philo, t_data *data, char *s);
-void	write_death(t_philo *philo, t_data *data);
+void				write_death(t_philo *philo, t_data *data);
 int					read_flag(int *ptr, pthread_mutex_t *mutex);
 void				write_flag(int *ptr, pthread_mutex_t *mutex, int value);
 int					allocate_threads(pthread_t **threads, size_t philo_count);
@@ -69,8 +78,7 @@ int					data_setup(t_data *data, int argc, char **argv);
 int					philos_setup(t_philo **philos, t_fork *forks,
 						pthread_mutex_t *meal_locks, t_data *data);
 void				clean_data(t_data *data);
-void				cleanup(t_philo *philos, t_data *data, t_fork *forks,
-						pthread_t *threads, pthread_mutex_t *meal_locks);
+void				cleanup(t_state *state);
 long				get_timestamp_millisec(void);
 int					create_threads(pthread_t *threads, t_philo *philos,
 						t_data *data);

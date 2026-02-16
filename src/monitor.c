@@ -6,7 +6,7 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 21:47:42 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/07 18:48:53 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/21 15:25:36 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	check_meals(t_philo *philos, pthread_mutex_t *meal_locks, t_data *data)
 {
 	size_t	i;
-	int	limit;
-	int	meals_eaten;
+	int		limit;
+	int		meals_eaten;
 
 	limit = data->total_meals;
 	i = 0;
@@ -31,9 +31,10 @@ void	check_meals(t_philo *philos, pthread_mutex_t *meal_locks, t_data *data)
 	return ;
 }
 
-void	check_starvation(t_philo *philos, pthread_mutex_t *meal_locks, t_data *data)
+void	check_starvation(t_philo *philos, pthread_mutex_t *meal_locks,
+		t_data *data)
 {
-	size_t		i;
+	size_t	i;
 	long	time_since_meal;
 
 	i = 0;
@@ -52,7 +53,8 @@ void	check_starvation(t_philo *philos, pthread_mutex_t *meal_locks, t_data *data
 	}
 }
 
-void	monitor_default(t_philo *philos, pthread_mutex_t *meal_locks, t_data *data)
+void	monitor_default(t_philo *philos, pthread_mutex_t *meal_locks,
+		t_data *data)
 {
 	while (1)
 	{
@@ -63,7 +65,8 @@ void	monitor_default(t_philo *philos, pthread_mutex_t *meal_locks, t_data *data)
 	}
 }
 
-void	monitor_with_meals(t_philo *philos, pthread_mutex_t *meal_locks, t_data *data)
+void	monitor_with_meals(t_philo *philos, pthread_mutex_t *meal_locks,
+		t_data *data)
 {
 	while (1)
 	{

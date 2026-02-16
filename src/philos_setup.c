@@ -6,13 +6,14 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 15:04:15 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/07 16:27:27 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/21 15:24:05 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	philos_setup(t_philo **philos, t_fork *forks, pthread_mutex_t *meal_locks, t_data *data)
+int	philos_setup(t_philo **philos, t_fork *forks, pthread_mutex_t *meal_locks,
+		t_data *data)
 {
 	size_t	i;
 

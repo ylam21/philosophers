@@ -6,17 +6,17 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 14:16:16 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/07 17:50:14 by omaly            ###   ########.fr       */
+/*   Updated: 2026/01/21 15:23:07 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-
-
 int	data_setup(t_data *data, int argc, char **argv)
 {
-	int temp = 0;
+	int	temp;
+
+	temp = 0;
 	if (ft_atoi(argv[1], &temp) != 0)
 		return (print_error(ERR_ATOI));
 	data->philo_count = (size_t)temp;

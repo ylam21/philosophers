@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
+/*   By: omaly <student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:28:33 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/21 15:44:06 by omaly            ###   ########.fr       */
+/*   Updated: 2026/03/02 09:10:41 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "base/base_inc.h"
+#include "philos/philos_inc.h"
+#include "routine/routine_inc.h"
+#include "utils/utils_inc.h"
+#include "error/error_inc.h"
+#include "setup/setup_inc.h"
+
+#include "base/base_inc.c"
+#include "philos/philos_inc.c"
+#include "routine/routine_inc.c"
+#include "utils/utils_inc.c"
+#include "error/error_inc.c"
+#include "setup/setup_inc.c"
 
 void	init(pthread_t **threads, pthread_mutex_t **meal_locks,
 		t_philo **philos, t_fork **forks)

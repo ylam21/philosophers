@@ -6,13 +6,12 @@
 #    By: omaly <student.42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 13:26:11 by omaly             #+#    #+#              #
-#    Updated: 2026/02/16 20:33:09 by omaly            ###   ########.fr        #
+#    Updated: 2026/03/02 08:55:39 by omaly            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Project settings
 SRC_DIR := src
-BUILD_DIR := build
 NAME := philo
 
 # Compiler settings
@@ -24,54 +23,16 @@ CFLAGS :=	-Wall \
 # Build tools
 RM = rm -rf
 
-# Source files
-MAIN_SRCS =	src/main.c \
-			src/input_checker.c \
-			src/data_setup.c \
-			src/forks_setup.c \
-			src/philos_setup.c \
-			src/monitor.c \
-			src/read_flag.c \
-			src/write_flag.c \
-			src/write_status.c \
-			src/routine.c \
-			src/sleep_routine.c \
-			src/eat_routine.c \
-			src/think_routine.c \
-			src/meal_locks_setup.c \
-			src/threads.c \
-			src/error.c \
-			src/cleanup.c \
-			src/get_timestamp_millisec.c
-
-UTILS_SRCS =	src/utils/ft_isdigit.c \
-				src/utils/ft_atoi.c \
-				src/utils/is_whitespace.c
-
-SRCS = $(MAIN_SRCS) $(UTILS_SRCS)
-
-# Object files
-OBJS = $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRCS))
-
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) \
+$(NAME):
+	$(CC) $(CFLAGS) src/main.c \
 	-o $@
 
-$(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
-
-# Create Object Files
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
-	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
-
 clean:
-	$(RM) $(BUILD_DIR) 
+	$(RM) $(NAME)
 
 fclean: clean
-	$(RM) $(NAME)
 
 re: fclean all
 

@@ -1,0 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: omaly <student.42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/03/02 08:47:39 by omaly             #+#    #+#             */
+/*   Updated: 2026/03/02 08:50:44 by omaly            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef ERROR_H
+#define ERROR_H
+
+# define ERR_ATOI "Error: Atoi returned error\n"
+# define ERR_ARG_COUNT "Error: Invalid argument count\n"
+# define ERR_NONDIGIT_ARG "Error: One of the args has non-digit character\n"
+# define ERR_MUTEX_INIT "Error: Failed to initialize mutex\n"
+# define ERR_MUTEX_DESTROY "Error: Failed to destroy mutex\n"
+# define ERR_ZERO_PHILO "Error: No philos no fun\n"
+# define ERR_MALLOC "Error: Failed to malloc memory\n"
+# define ERR_PTHREAD_CREATE "Error: Failed to create threads\n"
+# define ERR_PTHREAD_JOIN "Error: Failed to join threads\n"
+# define ERR_GET_TIME "Error: Time does not exist bro\n"
+
+int	print_error(char *error_msg);
+void	ft_putstr_fd(char *s, int fd);
+
+#endif

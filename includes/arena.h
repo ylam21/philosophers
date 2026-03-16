@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   think_routine.c                                    :+:      :+:    :+:   */
+/*   arena.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/20 15:56:03 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/21 15:23:24 by omaly            ###   ########.fr       */
+/*   Created: 2026/03/16 13:10:49 by omaly             #+#    #+#             */
+/*   Updated: 2026/03/16 18:49:59 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#ifndef ARENA_H
+# define ARENA_H
 
-void	think_routine(t_philo *philo, t_data *data)
+# include "base.h"
+
+typedef struct s_arena
 {
-	write_status(philo, data, "is thinking");
-	if (data->philo_count % 2 == 1)
-	{
-		usleep(5000);
-	}
-}
+	void	*buffer;
+	t_u64	cap;
+	t_u64	pos;
+}			t_arena;
+
+void		arena_init(t_arena *arena, void *backing_buffer,
+				t_u64 backing_buffer_len);
+void		*arena_push(t_arena *arena, t_u64 size);
+void		arena_pop_to(t_arena *arena, t_u64 pos);
+
+#endif

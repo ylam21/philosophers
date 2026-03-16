@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: omaly <student.42.fr>                      +#+  +:+       +#+        */
+/*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 16:03:14 by omaly             #+#    #+#             */
-/*   Updated: 2026/02/17 10:12:19 by omaly            ###   ########.fr       */
+/*   Updated: 2026/03/16 15:43:11 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../../includes/base.h"
 
 void	*routine_single(void *arg)
 {
@@ -38,13 +38,16 @@ void	*routine_even(void *arg)
 
 	philo = (t_philo *)arg;
 	data = philo->data;
-	while (read_flag(&data->stop_flag, &data->stop_lock) == 0)
+	pthread_mutex_lock(philo->meal_lock);
+	philo->last_meal_time = get_timestamp_millisec();
+	pthread_mutex_unlock(philo->meal_lock);
+	while (read_u32ptr_safe(&data->stop_flag, &data->stop_lock) == 0)
 	{
 		eat_routine_even(philo, data);
-		if (read_flag(&data->stop_flag, &data->stop_lock) != 0)
+		if (read_u32ptr_safe(&data->stop_flag, &data->stop_lock) != 0)
 			break ;
 		sleep_routine(philo, data);
-		if (read_flag(&data->stop_flag, &data->stop_lock) != 0)
+		if (read_u32ptr_safe(&data->stop_flag, &data->stop_lock) != 0)
 			break ;
 		think_routine(philo, data);
 	}
@@ -58,14 +61,16 @@ void	*routine_odd(void *arg)
 
 	philo = (t_philo *)arg;
 	data = philo->data;
-	usleep(15000);
-	while (read_flag(&data->stop_flag, &data->stop_lock) == 0)
+	pthread_mutex_lock(philo->meal_lock);
+	philo->last_meal_time = get_timestamp_millisec();
+	pthread_mutex_unlock(philo->meal_lock);
+	while (read_u32ptr_safe(&data->stop_flag, &data->stop_lock) == 0)
 	{
 		eat_routine_odd(philo, data);
-		if (read_flag(&data->stop_flag, &data->stop_lock) != 0)
+		if (read_u32ptr_safe(&data->stop_flag, &data->stop_lock) != 0)
 			break ;
 		sleep_routine(philo, data);
-		if (read_flag(&data->stop_flag, &data->stop_lock) != 0)
+		if (read_u32ptr_safe(&data->stop_flag, &data->stop_lock) != 0)
 			break ;
 		think_routine(philo, data);
 	}

@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_whitespace.c                                    :+:      :+:    :+:   */
+/*   think_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/10 14:20:55 by omaly             #+#    #+#             */
-/*   Updated: 2026/03/16 17:02:20 by omaly            ###   ########.fr       */
+/*   Created: 2025/12/20 15:56:03 by omaly             #+#    #+#             */
+/*   Updated: 2026/03/16 15:27:43 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/base.h"
 
-t_u8	is_whitespace(char c)
+void	think_routine(t_philo *philo, t_data *data)
 {
-	return (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r'
-		|| c == ' ');
+	write_status(philo, data, "is thinking");
+	if (data->philo_count % 2 == 1)
+	{
+		usleep(5000);
+	}
 }

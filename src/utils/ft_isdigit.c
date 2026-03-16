@@ -6,11 +6,13 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 14:11:58 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/04 14:12:00 by omaly            ###   ########.fr       */
+/*   Updated: 2026/03/16 18:50:43 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(char c)
+#include "../../includes/base.h"
+
+t_u8	ft_isdigit(char c)
 {
 	return ('0' <= c && c <= '9');
 }

@@ -19,14 +19,14 @@ arg 4: **time_to_sleep**<br>
 arg 5 (optional): **number_of_times_each_philosopher_must_eat**<br>
 
 ```sh
-bin/philo 6 800 200 200 100
+./philo 6 800 200 200 100
 ```
 
 **Clean objects**:
 ```sh
 make clean
  ```
-**Full clean**: 
+**Full clean**:
 ```sh
 make fclean
 ```
@@ -36,7 +36,7 @@ make fclean
 **Example usage:**
 1. Redirect the output of the program to a logfile.<br>
 ```sh
-bin/philo 6 800 200 200 100 > log
+./philo 6 800 200 200 100 > log
 ```
 2.1 Run the checker program against the logfile.<br>
 2.2 Provide the number of philos to check.<br>
@@ -50,7 +50,6 @@ Philo 3 has eaten 100 times.<br>
 Philo 4 has eaten 100 times.<br>
 Philo 5 has eaten 100 times.<br>
 Philo 6 has eaten 100 times.<br>
-
 
 ## Resources
 [Dining philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem)

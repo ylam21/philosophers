@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/03 18:55:21 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/06 19:04:39 by omaly            ###   ########.fr       */
+/*   Created: 2026/03/16 14:20:38 by omaly             #+#    #+#             */
+/*   Updated: 2026/03/16 18:50:07 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#ifndef INIT_H
+# define INIT_H
 
-void	ft_putstr_fd(char *s, int fd)
-{
-	size_t	i;
+# include "base.h"
 
-	i = 0;
-	if (!s)
-		return ;
-	while (s[i] != '\0')
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
-}
+t_u8	data_init(t_state *state, int argc, char **argv);
+t_u8	state_init(t_state *state, t_u8 *backing_buffer, int argc, char **argv);
 
-int	print_error(char *error_msg)
-{
-	ft_putstr_fd(error_msg, STDERR_FILENO);
-	return (EXIT_FAILURE);
-}
+#endif

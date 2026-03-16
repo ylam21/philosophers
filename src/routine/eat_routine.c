@@ -6,11 +6,11 @@
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/07 13:34:27 by omaly             #+#    #+#             */
-/*   Updated: 2026/01/21 15:24:17 by omaly            ###   ########.fr       */
+/*   Updated: 2026/03/16 15:27:21 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../../includes/base.h"
 
 void	change_fork_status(int *fork_status, int value)
 {
@@ -18,7 +18,7 @@ void	change_fork_status(int *fork_status, int value)
 	return ;
 }
 
-void	take_forks_odd(t_philo *philo, t_data *data)
+static void	take_forks_odd(t_philo *philo, t_data *data)
 {
 	pthread_mutex_lock(&philo->right_fork->fork_lock);
 	change_fork_status(&philo->right_fork->fork_status, FORK_TAKEN);
@@ -28,7 +28,7 @@ void	take_forks_odd(t_philo *philo, t_data *data)
 	write_status(philo, data, "has taken a fork");
 }
 
-void	take_forks_even(t_philo *philo, t_data *data)
+static void	take_forks_even(t_philo *philo, t_data *data)
 {
 	pthread_mutex_lock(&philo->left_fork->fork_lock);
 	change_fork_status(&philo->left_fork->fork_status, FORK_TAKEN);

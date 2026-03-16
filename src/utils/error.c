@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_flag.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/04 22:55:58 by omaly             #+#    #+#             */
-/*   Updated: 2025/12/05 13:29:05 by omaly            ###   ########.fr       */
+/*   Created: 2025/12/03 18:55:21 by omaly             #+#    #+#             */
+/*   Updated: 2026/03/16 18:50:52 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "../../includes/base.h"
 
-int	read_flag(int *ptr, pthread_mutex_t *mutex)
+static void	ft_putstr_fd(char *s, t_s32 fd)
 {
-	int	read;
+	size_t	i;
 
-	pthread_mutex_lock(mutex);
-	read = *ptr;
-	pthread_mutex_unlock(mutex);
-	return (read);
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i] != '\0')
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+}
+
+t_u8	print_error(char *error_msg)
+{
+	ft_putstr_fd(error_msg, STDERR_FILENO);
+	return (EXIT_FAILURE);
 }

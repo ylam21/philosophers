@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: omaly <student.42.fr>                      +#+  +:+       +#+         #
+#    By: omaly <omaly@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/03 13:26:11 by omaly             #+#    #+#              #
-#    Updated: 2026/02/16 20:33:09 by omaly            ###   ########.fr        #
+#    Updated: 2026/03/16 15:40:01 by omaly            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ BUILD_DIR := build
 NAME := philo
 
 # Compiler settings
-CC := cc
-CFLAGS :=	-Wall \
+CC		:= cc
+CFLAGS	:=	-Wall \
 			-Wextra \
 			-Werror
 
@@ -25,30 +25,24 @@ CFLAGS :=	-Wall \
 RM = rm -rf
 
 # Source files
-MAIN_SRCS =	src/main.c \
-			src/input_checker.c \
-			src/data_setup.c \
-			src/forks_setup.c \
-			src/philos_setup.c \
-			src/monitor.c \
-			src/read_flag.c \
-			src/write_flag.c \
-			src/write_status.c \
-			src/routine.c \
-			src/sleep_routine.c \
-			src/eat_routine.c \
-			src/think_routine.c \
-			src/meal_locks_setup.c \
-			src/threads.c \
-			src/error.c \
-			src/cleanup.c \
-			src/get_timestamp_millisec.c
-
-UTILS_SRCS =	src/utils/ft_isdigit.c \
-				src/utils/ft_atoi.c \
-				src/utils/is_whitespace.c
-
-SRCS = $(MAIN_SRCS) $(UTILS_SRCS)
+SRCS =	src/main.c \
+		src/input_checker.c \
+		src/arena/arena.c \
+		src/init/data_init.c \
+		src/init/state_init.c \
+		src/routine/routine.c \
+		src/routine/eat_routine.c \
+		src/routine/sleep_routine.c \
+		src/routine/think_routine.c \
+		src/simulation/simulation.c \
+		src/simulation/monitor.c \
+		src/utils/error.c \
+		src/utils/ft_atoi.c \
+		src/utils/ft_isdigit.c \
+		src/utils/get_timestamp_millisec.c \
+		src/utils/is_whitespace.c \
+		src/utils/u32_rw_safe.c \
+		src/utils/write_status.c
 
 # Object files
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRCS))
@@ -68,7 +62,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(BUILD_DIR) 
+	$(RM) $(BUILD_DIR)
 
 fclean: clean
 	$(RM) $(NAME)

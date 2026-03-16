@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_whitespace.c                                    :+:      :+:    :+:   */
+/*   u32_rw_safe.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: omaly <omaly@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/10 14:20:55 by omaly             #+#    #+#             */
-/*   Updated: 2026/03/16 17:02:20 by omaly            ###   ########.fr       */
+/*   Created: 2026/03/16 14:52:55 by omaly             #+#    #+#             */
+/*   Updated: 2026/03/16 17:02:15 by omaly            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/base.h"
 
-t_u8	is_whitespace(char c)
+t_u32	read_u32ptr_safe(t_u32 *ptr, pthread_mutex_t *mutex)
 {
-	return (c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r'
-		|| c == ' ');
+	t_u32	read;
+
+	pthread_mutex_lock(mutex);
+	read = *ptr;
+	pthread_mutex_unlock(mutex);
+	return (read);
+}
+
+void	write_u32ptr_safe(t_u32 *ptr, pthread_mutex_t *mutex, t_s32 value)
+{
+	pthread_mutex_lock(mutex);
+	*ptr = value;
+	pthread_mutex_unlock(mutex);
 }
